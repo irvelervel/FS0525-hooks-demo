@@ -3,7 +3,7 @@
 // che tipicamente erano confinate nei componenti a classe
 
 import { useState } from 'react'
-import { Button, Col, Container, Row } from 'react-bootstrap'
+import { Button, Col, Container, Row, Spinner } from 'react-bootstrap'
 
 // per farlo, utilizzeremo un React Hook chiamato "useState()"
 // gli hooks in JS sono delle funzioni che cominciano con use****
@@ -51,11 +51,17 @@ const StateExample = function () {
       <Container>
         <Row className="justify-content-center">
           <Col className="text-center">
+            {loading && (
+              <div>
+                <Spinner animation="border" variant="danger" />
+              </div>
+            )}
             <div className="d-flex justify-content-center">
               <Button
                 variant="success"
                 onClick={() => {
                   setName(name === 'Gian' ? 'Giorgio' : 'Gian')
+                  setLoading(!loading)
                 }}
               >
                 {name}
